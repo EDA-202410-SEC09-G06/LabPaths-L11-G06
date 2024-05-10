@@ -56,18 +56,16 @@ searchMethod = None
 def printMenu():
     print("\n")
     print("*******************************************")
-    # TODO Lab 11, asegurarse de completar las opciones 5, 9 y 10
     print("Bienvenido")
     print("1- Inicializar Analizador")
     print("2- Cargar información de buses de singapur")
     print("3- Calcular componentes conectados")
     print("4- Establecer estación base:")
-    print("5- Establecer metodo de busqueda y estación base:")
-    print("6- Hay camino entre estacion base y estación: ")
-    print("7- Ruta de costo mínimo desde la estación base y estación: ")
-    print("8- Estación que sirve a mas rutas: ")
-    print("9- Existe un camino de busqueda entre base y estación: ")
-    print("10- Ruta de busqueda entre la estación base y estación: ")
+    print("5- Hay camino entre estacion base y estación:")
+    print("6- Ruta de costo mínimo desde la estación base y estación: ")
+    print("7- Estación que sirve a mas rutas: ")
+    print("8- Existe un camino de busqueda entre base y estación: ")
+    print("9- Ruta de busqueda entre la estación base y estación: ")
     print("0- Salir")
     print("*******************************************")
 
@@ -95,6 +93,7 @@ def optionFour(cont, initialStation):
 
 def optionFive(cont, initialStation, searchMethod):
     # TODO Lab 11, conectar con la funcion del controller searchPaths
+    controller.searchPaths(cont, initialStation, searchMethod)
     pass
 
 
@@ -125,15 +124,15 @@ def optionEight(cont):
 
 def optionNine(cont, destStation, searchMethod):
     # TODO Lab 11, conectar con la funcion del controller hasSearchPath
-    haspath = None
+    haspath = controller.hasSearchPath(cont, destStation, searchMethod)
     print(haspath)
 
 
 def optionTen(cont, destStation, searchMethod):
     # TODO Lab 11, conectar con la funcion del controller searchPathTo
-    path = None
+    path = controller.searchPathTo(cont, destStation, searchMethod)
     if path is not None:
-        pass
+        print(path)
     else:
         print('No hay camino')
 
@@ -166,7 +165,11 @@ def thread_cycle():
 
         elif int(inputs) == 5:
             # TODO Lab 11, completar inputs opt 5, searchMethod, initialStation
-            pass
+            msg = "Estación Base: BusStopCode-ServiceNo (Ej: 75009-10): "
+            initialStation=input(msg)
+            msg= "Ingrese el método de busqueda DFS/BFS "
+            searchMethod=input(msg)
+            optionFive(cont, initialStation, searchMethod)
 
         elif int(inputs) == 6:
             destStation = input("Estación destino (Ej: 15151-10): ")
@@ -181,11 +184,20 @@ def thread_cycle():
 
         elif int(inputs) == 9:
             # TODO Lab 11, completar inputs opt 9, destStation
-            pass
+            msg= "Ingrese la estación destino "
+            destStation=input(msg)
+            msg= "Ingrese el método de busqueda DFS/BFS "
+            searchMethod=input(msg)
+            optionNine(cont, destStation, searchMethod)
 
         elif int(inputs) == 10:
             # TODO Lab 11, completar inputs opt 10, destStation
-            pass
+            msg= "Ingrese la estación destino "
+            destStation=input(msg)
+            msg= "Ingrese el método de busqueda DFS/BFS "
+            searchMethod=input(msg)
+            optionNine(cont, destStation, searchMethod)
+
 
         else:
             sys.exit(0)
