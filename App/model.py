@@ -29,7 +29,8 @@ from DISClib.ADT import map as m
 from DISClib.ADT import list as lt
 from DISClib.Algorithms.Graphs import scc
 from DISClib.Algorithms.Graphs import dijsktra as djk
-# TODO Lab 11, agregar importaciones dfs y bfs
+from DISClib.Algorithms.Graphs import dfs as dfs
+from DISClib.Algorithms.Graphs import bfs as bfs
 from DISClib.Utils import error as error
 assert config
 
@@ -217,10 +218,10 @@ def searchPaths(analyzer, initialStation, method):
     """
     # TODO Lab 11, ejecutar DepthFirstSearch de dfs
     if method == "dfs":
-        pass
+        return dfs.DepthFirstSearch(analyzer,initialStation)
     # TODO Lab 11, ejecutar BreadhtFisrtSearch de bfs
     elif method == "bfs":
-        pass
+        return bfs.BreathFirstSearch(analyzer,initialStation)
     return analyzer
 
 
@@ -236,10 +237,10 @@ def hasSearchPath(analyzer, destStation, method):
     """
     # TODO Lab 11, ejecutar hasPathTo por dfs
     if method == "dfs":
-        return None
+        return dfs.haspathto(analyzer,destStation)
     # TODO Lab 11, ejecutar hasPathTo por bfs
     elif method == "bfs":
-        return None
+        return bfs.hasPathTo(analyzer,destStation)
 
 
 def searchPathTo(analyzer, destStation, method):
@@ -258,10 +259,10 @@ def searchPathTo(analyzer, destStation, method):
     path = None
     # TODO Lab 11, ejecutar pathTo por dfs
     if method == "dfs":
-        pass
+        return dfs.pathTo(analyzer,destStation)
     # TODO Lab 11, ejecutar pathTo por bfs
     elif method == "bfs":
-        pass
+        return bfs.pathTo(analyzer,destStation)
     return path
 
 
