@@ -93,8 +93,8 @@ def optionFour(cont, initialStation):
 
 def optionFive(cont, initialStation, searchMethod):
     # TODO Lab 11, conectar con la funcion del controller searchPaths
-    controller.searchPaths(cont, initialStation, searchMethod)
-    pass
+    print(controller.searchPaths(cont, initialStation, searchMethod))
+    
 
 
 def optionSix(cont, initialStation, destStation):
