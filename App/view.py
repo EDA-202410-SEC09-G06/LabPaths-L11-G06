@@ -31,6 +31,7 @@ import threading
 from App import controller
 from DISClib.ADT import stack
 assert config
+from DISClib.ADT import list as lt
 
 """
 La vista se encarga de la interacción con el usuario.
@@ -56,16 +57,18 @@ searchMethod = None
 def printMenu():
     print("\n")
     print("*******************************************")
+    # TODO Lab 11, asegurarse de completar las opciones 5, 9 y 10
     print("Bienvenido")
     print("1- Inicializar Analizador")
     print("2- Cargar información de buses de singapur")
     print("3- Calcular componentes conectados")
     print("4- Establecer estación base:")
-    print("5- Hay camino entre estacion base y estación:")
-    print("6- Ruta de costo mínimo desde la estación base y estación: ")
-    print("7- Estación que sirve a mas rutas: ")
-    print("8- Existe un camino de busqueda entre base y estación: ")
-    print("9- Ruta de busqueda entre la estación base y estación: ")
+    print("5- Establecer metodo de busqueda y estación base:")
+    print("6- Hay camino entre estacion base y estación: ")
+    print("7- Ruta de costo mínimo desde la estación base y estación: ")
+    print("8- Estación que sirve a mas rutas: ")
+    print("9- Existe un camino de busqueda entre base y estación: ")
+    print("10- Ruta de busqueda entre la estación base y estación: ")
     print("0- Salir")
     print("*******************************************")
 
@@ -93,7 +96,8 @@ def optionFour(cont, initialStation):
 
 def optionFive(cont, initialStation, searchMethod):
     # TODO Lab 11, conectar con la funcion del controller searchPaths
-    print(controller.searchPaths(cont, initialStation, searchMethod))
+    controller.searchPaths(cont, initialStation, searchMethod)
+    print("FIN")
     
 
 
@@ -132,7 +136,9 @@ def optionTen(cont, destStation, searchMethod):
     # TODO Lab 11, conectar con la funcion del controller searchPathTo
     path = controller.searchPathTo(cont, destStation, searchMethod)
     if path is not None:
-        print(path)
+        print("El camino base entre la estación base y estación es ")
+        for pat in lt.iterator(path):
+            print(pat)
     else:
         print('No hay camino')
 
@@ -196,7 +202,7 @@ def thread_cycle():
             destStation=input(msg)
             msg= "Ingrese el método de busqueda DFS/BFS "
             searchMethod=input(msg)
-            optionNine(cont, destStation, searchMethod)
+            optionTen(cont, destStation, searchMethod)
 
 
         else:

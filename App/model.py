@@ -60,6 +60,7 @@ def newAnalyzer():
             'connections': None,
             'components': None,
             'paths': None,
+            "search": None
         }
 
         analyzer['stops'] = m.newMap(numelements=14000,
@@ -218,10 +219,10 @@ def searchPaths(analyzer, initialStation, method):
     """
     # TODO Lab 11, ejecutar DepthFirstSearch de dfs
     if method == "dfs":
-        return dfs.DepthFirstSearch(analyzer,initialStation)
+        analyzer["search"]=dfs.DepthFirstSearch(analyzer["connections"],initialStation)
     # TODO Lab 11, ejecutar BreadhtFisrtSearch de bfs
     elif method == "bfs":
-        return bfs.BreathFirstSearch(analyzer,initialStation)
+        analyzer["search"]=bfs.BreathFirstSearch(analyzer["connections"],initialStation)
     return analyzer
 
 
@@ -237,10 +238,10 @@ def hasSearchPath(analyzer, destStation, method):
     """
     # TODO Lab 11, ejecutar hasPathTo por dfs
     if method == "dfs":
-        return dfs.haspathto(analyzer,destStation)
+        return dfs.hasPathTo(analyzer["search"],destStation)
     # TODO Lab 11, ejecutar hasPathTo por bfs
     elif method == "bfs":
-        return bfs.hasPathTo(analyzer,destStation)
+        return bfs.hasPathTo(analyzer["search"],destStation)
 
 
 def searchPathTo(analyzer, destStation, method):
@@ -259,10 +260,10 @@ def searchPathTo(analyzer, destStation, method):
     path = None
     # TODO Lab 11, ejecutar pathTo por dfs
     if method == "dfs":
-        return dfs.pathTo(analyzer,destStation)
+        path=dfs.pathTo(analyzer["search"],destStation)
     # TODO Lab 11, ejecutar pathTo por bfs
     elif method == "bfs":
-        return bfs.pathTo(analyzer,destStation)
+        path=bfs.pathTo(analyzer["search"],destStation)
     return path
 
 
